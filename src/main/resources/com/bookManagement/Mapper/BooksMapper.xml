@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bookManagement.Mapper.BooksMapper">
+	<select id="getAllBooks" resultType="com.bookManagement.Model.Books">
+		SELECT
+			BK_NM AS bookName,
+			AUTH_NM AS authorName,
+			GENRE AS genre,
+			READ_STATUS AS readStatus,
+			RATING AS rating
+		FROM
+			BOOKS_DETAILS
+	</select>
+
+	<insert id="insertBook" parameterType="com.bookManagement.Model.Books">
+		INSERT INTO BOOKS_DETAILS (
+			BK_NM,
+			AUTH_NM,
+			GENRE,
+			READ_STATUS,
+			RATING
+			)
+		VALUES (
+			#{bookName},
+			#{authorName},
+			#{genre},
+			#{readStatus},
+			#{rating}
+			)
+	</insert>
+
+	<delete id="deleteBook" parameterType="java.lang.Integer">
+		DELETE FROM 
+			BOOKS_DETAILS
+		WHERE
+			BID = #{bookId}
+	</delete>
+
+	<select id="getBookByName" parameterType="java.lang.String" resultType="com.bookManagement.Model.Books">
+		SELECT
+			BK_NM AS bookName,
+			AUTH_NM AS authorName,
+			GENRE AS genre,
+			READ_STATUS AS readStatus,
+			RATING AS rating
+		FROM
+			BOOKS_DETAILS
+		WHERE
+			BK_NM = #{bookName}
+	</select>
+
+	<select id="getBookByAuthor" parameterType="java.lang.String" resultType="com.bookManagement.Model.Books">
+		SELECT
+			BK_NM AS bookName,
+			AUTH_NM AS authorName,
+			GENRE AS genre,
+			READ_STATUS AS readStatus,
+			RATING AS rating
+		FROM
+			BOOKS_DETAILS
+		WHERE
+			AUTH_NM = #{authorName}
+	</select>
+
+	<select id="getBookByGenre" parameterType="java.lang.String" resultType="com.bookManagement.Model.Books">
+		SELECT
+			BK_NM AS bookName,
+			AUTH_NM AS authorName,
+			GENRE AS genre,
+			READ_STATUS AS readStatus,
+			RATING AS rating
+		FROM
+			BOOKS_DETAILS
+		WHERE
+			GENRE = #{genre}
+	</select>
+
+	<select id="getBookByReadStatus" parameterType="java.lang.String" resultType="com.bookManagement.Model.Books">
+		SELECT
+			BK_NM AS bookName,
+			AUTH_NM AS authorName,
+			GENRE AS genre,
+			READ_STATUS AS readStatus,
+			RATING AS rating
+		FROM
+			BOOKS_DETAILS
+		WHERE
+			READ_STATUS = #{readStatus}
+	</select>
+
+	<select id="getBookByRating" parameterType="java.lang.Integer" resultType="com.bookManagement.Model.Books">
+		SELECT
+			BK_NM AS bookName,
+			AUTH_NM AS authorName,
+			GENRE AS genre,
+			READ_STATUS AS readStatus,
+			RATING AS rating
+		FROM
+			BOOKS_DETAILS
+		WHERE
+			RATING = #{rating}
+	</select>
+
+</mapper>
